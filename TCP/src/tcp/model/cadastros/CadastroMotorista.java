@@ -1,9 +1,10 @@
 package tcp.model.cadastros;
 
-import Dados.RepositorioMotorista;
-import exceptions.MotoristaJaCadastradoException;
-import exceptions.MotoristaNaoCadastradoException;
-import exceptions.MotoristaNaoEncontradoException;
+import tcp.model.repositorios.RepositorioMotorista;
+import tcp.model.entidades.Motorista;
+import tcp.model.excessoes.MotoristaJaCadastradoException;
+import tcp.model.excessoes.MotoristaNaoCadastradoException;
+import tcp.model.excessoes.MotoristaNaoEncontradoException;
 
 public class CadastroMotorista {
  private RepositorioMotorista motoristas;
@@ -16,7 +17,6 @@ public class CadastroMotorista {
 			motoristas.inserir(motorista);			
 		}
 		else {
-			
 			throw new MotoristaJaCadastradoException();
 		}
 	}

@@ -3,13 +3,13 @@ package tcp.model.entidades;
 import tcp.model.repositorios.RepositorioRota;
 
 public class Motorista extends Funcionario {
-		
-		private String CNH;
-		private String categoriaHabilitacao;
-		private RepositorioRota rotas;
-		
+	
+	private String CNH;
+	private String categoriaHabilitacao;
+	private RepositorioRota rotas;
+	
 	Motorista (String CNH, String categoriaHabilitacao, RepositorioRota rotas) {	
-		
+		super();
 		this.CNH = CNH;
 		this.categoriaHabilitacao = categoriaHabilitacao;
 		this.rotas = rotas;

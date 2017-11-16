@@ -1,9 +1,10 @@
 package tcp.model.repositorios;
 
-import ClasseNegocio.Motorista;
-import exceptions.MotoristaJaCadastradoException;
-import exceptions.MotoristaNaoCadastradoException;
-import exceptions.MotoristaNaoEncontradoException;
+import tcp.model.entidades.Motorista;
+import tcp.model.entidades.PessoaFisica;
+import tcp.model.excessoes.MotoristaJaCadastradoException;
+import tcp.model.excessoes.MotoristaNaoCadastradoException;
+import tcp.model.excessoes.MotoristaNaoEncontradoException;
 
 public class RepositorioMotoristaArray implements RepositorioMotorista {
 	private Motorista [] motoristas;
@@ -16,7 +17,8 @@ public class RepositorioMotoristaArray implements RepositorioMotorista {
 	
 
 	public void inserir(Motorista motorista)  throws MotoristaJaCadastradoException{
-		if (this.existe(motorista.getCPF())==false) {
+		
+		if (this.existe((((PessoaFisica) motorista.getPessoa()).getCpf()))==false) {
 			this.motoristas[indice] = motorista;
 			if(this.indice>=this.motoristas.length-1) {
 				Motorista[] motoristasNovo = new Motorista[2*this.motoristas.length];

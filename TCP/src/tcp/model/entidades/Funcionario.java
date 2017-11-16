@@ -1,8 +1,10 @@
 package tcp.model.entidades;
 
-public class Funcionario extends ParteInteressada{
+public class Funcionario extends ParteInteressada {
 
-	
+	Funcionario (){
+		
+	}
 	 Funcionario (String codigo, String dataInicioRelacao, String dataFimRelacao) {
 		this.setCodigo(codigo);
 		this.setDataInicioRelacao(dataInicioRelacao);

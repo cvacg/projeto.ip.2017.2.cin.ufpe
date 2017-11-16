@@ -1,9 +1,9 @@
 package tcp.model.repositorios;
 
-import ClasseNegocio.Motorista;
-import exceptions.MotoristaJaCadastradoException;
-import exceptions.MotoristaNaoCadastradoException;
-import exceptions.MotoristaNaoEncontradoException;
+import tcp.model.entidades.Motorista;
+import tcp.model.excessoes.MotoristaJaCadastradoException;
+import tcp.model.excessoes.MotoristaNaoCadastradoException;
+import tcp.model.excessoes.MotoristaNaoEncontradoException;
 
 public class RepositorioMotoristaLista implements RepositorioMotorista {
 	private Motorista motorista;
