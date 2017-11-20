@@ -23,17 +23,17 @@ public class CadastroMotorista {
 		}
 	}
 	
-	public void remover(String CPF) throws MotoristaNaoCadastradoException{
-		if(motoristas.existe(CPF)==true){
-			motoristas.remover(CPF);		
+	public void remover(String CNH) throws MotoristaNaoCadastradoException{
+		if(motoristas.existe(CNH)==true){
+			motoristas.remover(CNH);		
 		}
 		else {
 			throw new MotoristaNaoCadastradoException();
 		}
 	}
 	
-	public void atualizar(String CPF, Motorista motorista) throws MotoristaNaoEncontradoException{
-		if(motoristas.existe(CPF)==true){
+	public void atualizar(String CNH, Motorista motorista) throws MotoristaNaoEncontradoException{
+		if(motoristas.existe(CNH)==true){
 			motoristas.atualizar(motorista);		
 		}
 		else {
