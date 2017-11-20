@@ -1,6 +1,7 @@
 package tcp.model.repositorios;
 
 import tcp.model.entidades.Motorista;
+import tcp.model.entidades.PessoaFisica;
 import tcp.model.excessoes.MotoristaJaCadastradoException;
 import tcp.model.excessoes.MotoristaNaoCadastradoException;
 import tcp.model.excessoes.MotoristaNaoEncontradoException;
@@ -32,7 +33,7 @@ public class RepositorioMotoristaLista implements RepositorioMotorista {
 	}
 
 	public void inserir (Motorista motorista) throws MotoristaJaCadastradoException{ {
-		if(!this.existe(motorista.getCPF())){
+		if(this.existe(motorista.getCNH())==false){
 		if (this.proximo == null) {
 			this.motorista = motorista;
 			this.proximo = new RepositorioMotoristaLista();
@@ -45,25 +46,16 @@ public class RepositorioMotoristaLista implements RepositorioMotorista {
 	}
 	}
 	
-	public void remover (Motorista motorista) {
-		if (this.motorista.equals(motorista)) {
-			this.motorista = this.proximo.motorista;
-			this.proximo = this.proximo.proximo;
-			
-		} else {
-			this.proximo.remover(motorista);
-		}
-	}
-	
+
 
 	
-	public void remover(String CPF) throws MotoristaNaoCadastradoException {
-		if(this.existe(CPF)){
-			if(this.motorista.equals(CPF)){
+	public void remover(String CNH) throws MotoristaNaoCadastradoException {
+		if(this.existe(CNH)==true){
+			if(this.motorista.equals(CNH)){
 				this.motorista = this.proximo.motorista;
 				this.proximo = this.proximo.proximo;
 			}else {
-				this.proximo.remover(CPF);
+				this.proximo.remover(CNH);
 			}
 		}
 		else {
@@ -74,8 +66,8 @@ public class RepositorioMotoristaLista implements RepositorioMotorista {
 
 	
 	public void atualizar(Motorista motorista) throws MotoristaNaoEncontradoException {
-		if(this.existe(motorista.getCPF())){
-			if(this.motorista.equals(motorista.getCPF())){
+		if(this.existe(motorista.getCNH())==true){
+			if(this.motorista.equals((((PessoaFisica) motorista.getPessoa()).getCpf()))==true){
 				this.motorista = motorista;
 			}else {
 				this.proximo.atualizar(motorista);
@@ -88,25 +80,25 @@ public class RepositorioMotoristaLista implements RepositorioMotorista {
 	}
 
 	
-	public Motorista procurar(String CPF) throws MotoristaNaoEncontradoException {
-		if(this.existe(CPF)){
-			if(this.motorista.getCPF().equals(CPF)){
+	public Motorista procurar(String CNH) throws MotoristaNaoEncontradoException {
+		if(this.existe(CNH)==true){
+			if((motorista.getCNH()).equals(CNH)){
 				return this.motorista;
 			}else {
-				return this.proximo.procurar(CPF);
+				return this.proximo.procurar(CNH);
 			}
 		}
 		throw new MotoristaNaoEncontradoException();
 	}
 
 	
-	public boolean existe(String CPF) {
+	public boolean existe(String CNH) {
 		boolean encontrou = false;
 		if(this.motorista != null){
-			if(this.motorista.getCPF().equals(CPF)){
+			if(((((PessoaFisica) motorista.getPessoa()).getCpf())).equals(CNH)){
 				encontrou = true;
 			}else {
-				this.proximo.existe(CPF);
+				this.proximo.existe(CNH);
 			}
 		}
 		return encontrou;

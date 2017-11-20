@@ -18,7 +18,7 @@ public class RepositorioMotoristaArray implements RepositorioMotorista {
 
 	public void inserir(Motorista motorista)  throws MotoristaJaCadastradoException{
 		
-		if (this.existe((((PessoaFisica) motorista.getPessoa()).getCpf()))==false) {
+		if (this.existe(motorista.getCNH())==false) {
 			this.motoristas[indice] = motorista;
 			if(this.indice>=this.motoristas.length-1) {
 				Motorista[] motoristasNovo = new Motorista[2*this.motoristas.length];
@@ -36,12 +36,12 @@ public class RepositorioMotoristaArray implements RepositorioMotorista {
 
 
 	
-	public void remover(String CPF) throws MotoristaNaoCadastradoException {
-		if(this.existe(CPF)==true) {
-			if(this.motoristas.equals(CPF)) {
+	public void remover(String CNH) throws MotoristaNaoCadastradoException {
+		if(this.existe(CNH)==true) {
+			
 				this.motoristas[this.indice] = this.motoristas[this.indice-1];
 				this.indice = this.indice -1;
-			}
+			
 		} else {
 			throw new MotoristaNaoCadastradoException();
 		}
@@ -52,31 +52,31 @@ public class RepositorioMotoristaArray implements RepositorioMotorista {
 
 	
 	public void atualizar(Motorista motorista) throws MotoristaNaoEncontradoException {
-		this.motoristas[this.getIndice(motorista.getCPF())] = motorista;
+		this.motoristas[this.getIndice(motorista.getCNH())] = motorista;
 		
 	}
 
 
 	
-	public Motorista procurar(String CPF) throws MotoristaNaoEncontradoException {
+	public Motorista procurar(String CNH) throws MotoristaNaoEncontradoException {
 		
-		return this.motoristas[this.getIndice(CPF)];
+		return this.motoristas[this.getIndice(CNH)];
 	}
 
 
 	
-	public boolean existe(String CPF) {
+	public boolean existe(String CNH) {
 		for(int i = 0;i < this.indice;i++){
-			if(this.motoristas[i].getCPF().equals(CPF)){
+			if(this.motoristas[i].getCNH().equals(CNH)){
 				return true;
 			}
 		}
 	
 		return false;
 	}
-	public int getIndice (String CPF) throws MotoristaNaoEncontradoException{
+	public int getIndice (String CNH) throws MotoristaNaoEncontradoException{
 		for(int i = 0;i < this.indice;i++){
-			if(this.motoristas[i].getCPF().equals(CPF)){
+			if(this.motoristas[i].getCNH().equals(CNH)){
 				return i;
 			}
 		}

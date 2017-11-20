@@ -2,6 +2,7 @@ package tcp.model.cadastros;
 
 import tcp.model.repositorios.RepositorioMotorista;
 import tcp.model.entidades.Motorista;
+import tcp.model.entidades.PessoaFisica;
 import tcp.model.excessoes.MotoristaJaCadastradoException;
 import tcp.model.excessoes.MotoristaNaoCadastradoException;
 import tcp.model.excessoes.MotoristaNaoEncontradoException;
@@ -12,8 +13,9 @@ public class CadastroMotorista {
  public CadastroMotorista(RepositorioMotorista motoristas) {
 	 this.motoristas = motoristas;
  }
+ 
  public void cadastrar(Motorista motorista) throws MotoristaJaCadastradoException{
-		if(!motoristas.existe(motorista.getCPF())){
+		if(motoristas.existe(motorista.getCNH())==false){
 			motoristas.inserir(motorista);			
 		}
 		else {
@@ -22,7 +24,7 @@ public class CadastroMotorista {
 	}
 	
 	public void remover(String CPF) throws MotoristaNaoCadastradoException{
-		if(motoristas.existe(CPF)){
+		if(motoristas.existe(CPF)==true){
 			motoristas.remover(CPF);		
 		}
 		else {
@@ -31,7 +33,7 @@ public class CadastroMotorista {
 	}
 	
 	public void atualizar(String CPF, Motorista motorista) throws MotoristaNaoEncontradoException{
-		if(motoristas.existe(CPF)){
+		if(motoristas.existe(CPF)==true){
 			motoristas.atualizar(motorista);		
 		}
 		else {
@@ -39,9 +41,9 @@ public class CadastroMotorista {
 		}
 	}
 	
-	public Motorista procurar(String CPF) throws MotoristaNaoEncontradoException{
-		if(motoristas.existe(CPF)){
-			return motoristas.procurar(CPF);
+	public Motorista procurar(String CNH) throws MotoristaNaoEncontradoException{
+		if(motoristas.existe(CNH)==true){
+			return motoristas.procurar(CNH);
 		
 		}
 		else {
